@@ -10,7 +10,7 @@ class PegawaiController extends Controller
     public function index()
     {
     	// mengambil data dari table pegawai
-    	$pegawai = DB::table('pegawai')->get();
+    	$pegawai = DB::table('pegawai')->paginate(10);
  
     	// mengirim data pegawai ke view index
     	return view('pegawai/dataPegawai',['pegawai' => $pegawai]);
@@ -63,15 +63,5 @@ class PegawaiController extends Controller
             
         // alihkan halaman ke halaman pegawai
         return redirect('/pegawai');
-    }
-
-    public function formulir(){
-        return view('formulir');
-    }
-
-    public function proses(Request $request){
-        $nama = $request->input('nama');
-     	$alamat = $request->input('alamat');
-        return "Nama : ".$nama.", Alamat : ".$alamat;
     }
 }
